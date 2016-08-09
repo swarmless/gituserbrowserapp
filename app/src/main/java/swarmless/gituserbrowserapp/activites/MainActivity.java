@@ -38,7 +38,7 @@ import swarmless.gituserbrowserapp.models.User;
 import swarmless.gituserbrowserapp.utils.Utils;
 import swarmless.gituserbrowserapp.webService.ServiceGenerator;
 
-import static swarmless.gituserbrowserapp.utils.Utils.isAndroid5;
+import static swarmless.gituserbrowserapp.utils.Utils.isAndroid6;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         // showEnterAuthenticationDialog();
-        if (isAndroid5()) {
-              askForPermissions();
+        if (isAndroid6()) {
+              // no permissions needed - only internet permission
         }
 
 
@@ -363,64 +363,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    private void askForPermissions() {
-
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.INTERNET)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.INTERNET)) {
-
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.INTERNET},
-                        App.Const.MY_PERMISSIONS_REQUEST_INTERNET);
-
-            }
-        }
-    }
-
-    /**
-     *
-     *
-     * @param requestCode the code of the permission needed to be requested
-     * @param permissions 
-     * @param grantResults
-     */
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case App.Const.MY_PERMISSIONS_REQUEST_INTERNET: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    fetchUsers(lastId, true);
-
-                    onResume();
-
-                } else {
-
-                    finish();
-                }
-
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
 
 
     /**

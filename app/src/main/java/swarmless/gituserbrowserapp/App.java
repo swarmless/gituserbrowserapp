@@ -11,11 +11,10 @@ public class App extends Application {
 
     public static final class Const {
 
-        //permissions
+        //URL for the GitHub Api
+        public static final String API_BASE_URL = "https://api.github.com/";
 
-        public static final int MY_PERMISSIONS_REQUEST_INTERNET = 10;
-
-
+        // Error codes
         public static final int RESPONSE_CODE_UNAUTHORIZED = 401; // Unauthorized access
     }
 }
